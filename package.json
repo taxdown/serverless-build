@@ -2,8 +2,13 @@
   "name": "@taxdown/serverless-build",
   "version": "0.0.3",
   "description": "A extension of the serverless-esbuild plugin that bundles your ES6 + TypeScript Node.js Lambda functions.",
-  "main": "src/index.js",
-  "scripts": {},
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "esbuild src/index.ts --platform=node --outdir=dist --format=cjs"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/taxdown/serverless-build.git"
