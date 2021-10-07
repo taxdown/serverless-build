@@ -7,12 +7,13 @@
     "dist"
   ],
   "scripts": {
-    "build": "esbuild src/index.ts --platform=node --outdir=dist --format=cjs",
+    "build": "esbuild src/** --platform=node --outdir=dist --format=cjs",
     "prepare": "husky install",
     "release": "standard-version",
     "release:minor": "standard-version --release-as minor",
     "release:patch": "standard-version --release-as patch",
-    "release:major": "standard-version --release-as major"
+    "release:major": "standard-version --release-as major",
+    "test": "jest --maxWorkers=50% --coverage --coverageProvider v8"
   },
   "repository": {
     "type": "git",
@@ -42,6 +43,7 @@
   "devDependencies": {
     "@commitlint/cli": "^13.2.0",
     "@commitlint/config-conventional": "^13.2.0",
+    "@types/serverless": "^1.78.35",
     "husky": "^7.0.0",
     "standard-version": "^9.3.1"
   }

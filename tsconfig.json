@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "lib": ["es2020"],
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "removeComments": true,
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "sourceMap": true,
+    "target": "es2020",
+    "outDir": "lib",
+    "baseUrl": "./",
+    "types": ["jest","node"],
+    "typeRoots": ["./types", "./node_modules/@types"]
+  },
+  "include": ["./**/*.ts"],
+  "exclude": [
+    "node_modules/**/*",
+    ".vscode/**/*",
+    "tests/**/*"
+  ]
+}
