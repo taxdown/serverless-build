@@ -12,7 +12,14 @@ describe('Test ServerlessBuildPlugin', () => {
       pluginManager: {
         addPlugin,
       },
-      service: {},
+      service: {
+        custom: {
+          esLogs: {
+            endpoint: 'testEndpoint',
+            index: 'testIndex',
+          }
+        }
+      },
     } as unknown as Serverless;
     const plugin = new ServerlessBuildPlugin(serverless);
     expect(addPlugin).toHaveBeenCalledTimes(5);
