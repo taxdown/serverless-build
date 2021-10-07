@@ -27,10 +27,14 @@ export class CustomConfig {
   options: any;
   constructor(options: any) {
     if (!options?.esLogs.endpoint) {
-      throw new Error('EsLogs config is mandatory for this package and endpoint should be specified under custom.esLogs.endpoint');
+      throw new Error(
+        'EsLogs config is mandatory for this package and endpoint should be specified under custom.esLogs.endpoint'
+      );
     }
     if (!options?.esLogs.index) {
-      throw new Error('EsLogs config is mandatory for this package and index should be specified under custom.esLogs.index');
+      throw new Error(
+        'EsLogs config is mandatory for this package and index should be specified under custom.esLogs.index'
+      );
     }
     this.options = {
       esbuild: { ...options?.esbuild, ...DEFAULT_CONFIG.esbuild },

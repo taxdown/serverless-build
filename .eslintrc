@@ -1,0 +1,4 @@
+{
+  "extends": "@taxdown/eslint-config/ts",
+  "ignorePatterns": ["**/*.spec.ts"]
+}
