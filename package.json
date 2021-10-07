@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "build": "esbuild src/** --platform=node --outdir=dist --format=cjs",
+    "lint": "eslint src/",
     "prepare": "husky install",
     "release": "standard-version",
     "release:minor": "standard-version --release-as minor",
@@ -43,7 +44,9 @@
   "devDependencies": {
     "@commitlint/cli": "^13.2.0",
     "@commitlint/config-conventional": "^13.2.0",
+    "@taxdown/eslint-config": "^0.1.12",
     "@types/serverless": "^1.78.35",
+    "eslint": "^7.32.0",
     "husky": "^7.0.0",
     "standard-version": "^9.3.1"
   }

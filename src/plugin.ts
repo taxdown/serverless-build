@@ -15,6 +15,7 @@ export class ServerlessBuildPlugin implements ServerlessPlugin {
     const customConfig = new CustomConfig(serverless.service.custom);
     serverless.service.custom = customConfig.get();
     this.serverless = serverless;
+
     serverless.pluginManager.addPlugin(EsbuildServerlessPlugin);
     serverless.pluginManager.addPlugin(ServerlessPluginPrune);
     serverless.pluginManager.addPlugin(ServerlessEsLogsPlugin);
