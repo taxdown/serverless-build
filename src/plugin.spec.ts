@@ -13,12 +13,18 @@ describe('Test ServerlessBuildPlugin', () => {
         addPlugin,
       },
       service: {
+        serverless: {
+          config: {
+            servicePath: '',
+          },
+        },
         custom: {
           esLogs: {
             endpoint: 'testEndpoint',
             index: 'testIndex',
-          }
-        }
+          },
+        },
+        functions: [],
       },
     } as unknown as Serverless;
     const plugin = new ServerlessBuildPlugin(serverless);

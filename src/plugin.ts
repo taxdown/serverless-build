@@ -9,11 +9,12 @@ import * as ServerlessPlugin from 'serverless/classes/Plugin';
 import { CustomConfig } from './config';
 
 export class ServerlessBuildPlugin implements ServerlessPlugin {
+  customConfig: CustomConfig;
   hooks: ServerlessPlugin.Hooks;
   serverless: Serverless;
   constructor(serverless: Serverless) {
-    const customConfig = new CustomConfig(serverless.service.custom);
-    serverless.service.custom = customConfig.get();
+    this.customConfig = new CustomConfig(serverless.service);
+    serverless.service.custom = this.customConfig.get();
     this.serverless = serverless;
 
     serverless.pluginManager.addPlugin(EsbuildServerlessPlugin);
@@ -21,5 +22,11 @@ export class ServerlessBuildPlugin implements ServerlessPlugin {
     serverless.pluginManager.addPlugin(ServerlessEsLogsPlugin);
     serverless.pluginManager.addPlugin(ServerlessIamPerFunctionPlugin);
     serverless.pluginManager.addPlugin(ServerlessPluginSplitStacks);
+
+    this.hooks = {
+      'after:package:initialize': () => {
+        this.customConfig.createStackMap();
+      },
+    };
   }
 }
