@@ -1,8 +1,8 @@
-const ServerlessEsLogsPlugin = require('@taxdown/serverless-es-logs');
-const EsbuildServerlessPlugin = require('serverless-esbuild');
-const ServerlessIamPerFunctionPlugin = require('serverless-iam-roles-per-function');
-const ServerlessPluginSplitStacks = require('serverless-plugin-split-stacks');
-const ServerlessPluginPrune = require('serverless-prune-plugin');
+import ServerlessEsLogsPlugin from '@taxdown/serverless-es-logs';
+import EsbuildServerlessPlugin from 'serverless-esbuild';
+import ServerlessIamPerFunctionPlugin from 'serverless-iam-roles-per-function';
+import ServerlessPluginSplitStacks from 'serverless-plugin-split-stacks';
+import ServerlessPluginPrune from 'serverless-prune-plugin';
 
 class ServerlessPlugin extends EsbuildServerlessPlugin {
   constructor(serverless, options) {
