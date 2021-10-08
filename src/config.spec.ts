@@ -44,7 +44,7 @@ describe('Test CustomConfig', () => {
     expect(customConfig.get()).toEqual({
       esbuild: {
         concurrency: 10,
-        external: ['aws-sdk'],
+        exclude: ['aws-sdk'],
         format: 'cjs',
         sourcemap: 'external',
       },
@@ -92,7 +92,7 @@ describe('Test CustomConfig', () => {
     expect(customConfig.get()).toEqual({
       esbuild: {
         concurrency: 10,
-        external: ['aws-sdk'],
+        exclude: ['aws-sdk'],
         format: 'cjs',
         sourcemap: 'external',
       },

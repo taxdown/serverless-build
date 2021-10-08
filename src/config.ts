@@ -4,7 +4,7 @@ import Service from 'serverless/classes/Service';
 const DEFAULT_CONFIG = {
   esbuild: {
     concurrency: 10,
-    external: ['aws-sdk'],
+    exclude: ['aws-sdk'],
     format: 'cjs',
     sourcemap: 'external',
   },
