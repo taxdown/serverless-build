@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/taxdown/serverless-build/compare/v0.1.0...v0.1.1) (2021-10-08)
+
+
+### Bug Fixes
+
+* update external key for default options ([2c55c10](https://github.com/taxdown/serverless-build/commits/2c55c10b1aae7ca0203fb7936a7fab91c20be231))
+
 ## [0.1.0](https://github.com/taxdown/serverless-build/compare/v0.0.4...v0.1.0) (2021-10-07)
 
 
