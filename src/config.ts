@@ -52,7 +52,7 @@ export class CustomConfig {
     };
   }
 
-  buildStackMapFile(importedFunctions: string[]): string {
+  private buildStackMapFile(importedFunctions: string[]): string {
     const components = importedFunctions
       .map(path => {
         const component = path.split('/')[2];
@@ -69,7 +69,7 @@ export class CustomConfig {
     };`;
   }
 
-  buildStackMapOptions(service: Service): typeof DEFAULT_CONFIG.splitStacks {
+  private buildStackMapOptions(service: Service): typeof DEFAULT_CONFIG.splitStacks {
     this.stackMapFile = this.buildStackMapFile(service.functions as unknown as string[]);
     const options = service.custom;
     const pathjs = `${service.serverless.config.servicePath}/.serverless/stacks-map.js`;
