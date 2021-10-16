@@ -43,8 +43,8 @@ export class CustomConfig {
   }
 
   private buildEsLogsOptions(service: Service): typeof DEFAULT_CONFIG.esLogs {
-    const options = service.custom;
-    if (options.esLogs === false) {
+    const options = service?.custom;
+    if (options?.esLogs === false) {
       service.serverless.cli.log('ServerlessEsLogsPlugin plugin disabled');
       return;
     }
