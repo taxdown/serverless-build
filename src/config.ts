@@ -33,22 +33,34 @@ export class CustomConfig {
 
   constructor(service: Service) {
     const options = service?.custom;
+    this.options = {
+      ...options,
+      esbuild: { ...options?.esbuild, ...DEFAULT_CONFIG.esbuild },
+      esLogs: this.buildEsLogsOptions(service),
+      prune: { ...options?.prune, ...DEFAULT_CONFIG.prune },
+      splitStacks: this.buildStackMapOptions(service),
+    };
+  }
+
+  private buildEsLogsOptions(service: Service): typeof DEFAULT_CONFIG.esLogs {
+    const options = service.custom;
+    if (options.esLogs === false) {
+      service.serverless.cli.log('ServerlessEsLogsPlugin plugin disabled');
+      return;
+    }
     if (!options?.esLogs.endpoint) {
       throw new Error(
-        'EsLogs config is mandatory for this package and endpoint should be specified under custom.esLogs.endpoint'
+        'EsLogs config is specified for this package and endpoint should be specified under custom.esLogs.endpoint'
       );
     }
     if (!options?.esLogs.index) {
       throw new Error(
-        'EsLogs config is mandatory for this package and index should be specified under custom.esLogs.index'
+        'EsLogs config is specified for this package and index should be specified under custom.esLogs.index'
       );
     }
-    this.options = {
-      ...options,
-      esbuild: { ...options?.esbuild, ...DEFAULT_CONFIG.esbuild },
-      esLogs: { ...options?.esLogs, ...DEFAULT_CONFIG.esLogs },
-      prune: { ...options?.prune, ...DEFAULT_CONFIG.prune },
-      splitStacks: this.buildStackMapOptions(service),
+    return {
+      ...options.esLogs,
+      ...DEFAULT_CONFIG.esLogs,
     };
   }
 

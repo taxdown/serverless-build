@@ -42,7 +42,16 @@ There are some plugins that are embedded into this one for various uses:
 
 ## Options
 
-There are no specific options for this plugin, but other plugins options can be overriden by setting them in their original fashion. However, there are mandatory options:
+There are no specific options for this plugin, but other plugins options can be overriden by setting them in their original fashion.
+
+esLogs is optional, but if not explicitely disabled:
+
+```yaml
+custom:
+  esLogs: false
+```
+
+It is mandatory these options are specified:
 
 ```yaml
 custom:

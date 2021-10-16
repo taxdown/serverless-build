@@ -19,7 +19,9 @@ export class ServerlessBuildPlugin implements ServerlessPlugin {
 
     serverless.pluginManager.addPlugin(EsbuildServerlessPlugin);
     serverless.pluginManager.addPlugin(ServerlessPluginPrune);
-    serverless.pluginManager.addPlugin(ServerlessEsLogsPlugin);
+    if (serverless.service.custom.esLogs) {
+      serverless.pluginManager.addPlugin(ServerlessEsLogsPlugin);
+    }
     serverless.pluginManager.addPlugin(ServerlessIamPerFunctionPlugin);
     serverless.pluginManager.addPlugin(ServerlessPluginSplitStacks);
 
