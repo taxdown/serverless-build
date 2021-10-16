@@ -11,13 +11,9 @@
     "target": "es2019",
     "outDir": "lib",
     "baseUrl": "./",
-    "types": ["jest","node"],
+    "types": ["jest", "node"],
     "typeRoots": ["./types", "./node_modules/@types"]
   },
   "include": ["./**/*.ts"],
-  "exclude": [
-    "node_modules/**/*",
-    ".vscode/**/*",
-    "tests/**/*"
-  ]
+  "exclude": ["node_modules/**/*", ".vscode/**/*", "tests/**/*"]
 }
