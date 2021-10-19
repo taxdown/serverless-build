@@ -6,7 +6,7 @@ describe('Test CustomConfig', () => {
     expect(() => {
       new CustomConfig();
     }).toThrow(
-      'EsLogs config is mandatory for this package and endpoint should be specified under custom.esLogs.endpoint'
+      'EsLogs config is specified for this package and endpoint should be specified under custom.esLogs.endpoint'
     );
   });
   test('When no options are passed, it should throw with index is mandatory config error', async () => {
@@ -21,7 +21,7 @@ describe('Test CustomConfig', () => {
     expect(() => {
       new CustomConfig(service);
     }).toThrow(
-      'EsLogs config is mandatory for this package and index should be specified under custom.esLogs.index'
+      'EsLogs config is specified for this package and index should be specified under custom.esLogs.index'
     );
   });
   test('When no options are passed, it should return default', async () => {
