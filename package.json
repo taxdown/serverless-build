@@ -1,6 +1,6 @@
 {
   "name": "@taxdown/serverless-build",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "A extension of the serverless-esbuild plugin that bundles your ES6 + TypeScript Node.js Lambda functions.",
   "main": "dist/index.js",
   "files": [

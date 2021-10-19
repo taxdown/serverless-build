@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/taxdown/serverless-build/compare/v0.1.5...v0.2.0) (2021-10-19)
+
+
+### Features
+
+* eslogs plugin is now optional based on the user's configuration ([#7](https://github.com/taxdown/serverless-build/issues/7)) ([b746a81](https://github.com/taxdown/serverless-build/commits/b746a811eef65e85c4c1ccba9ad6df3372cb700f))
+
 ### [0.1.5](https://github.com/taxdown/serverless-build/compare/v0.1.4...v0.1.5) (2021-10-14)
 
 ### [0.1.4](https://github.com/taxdown/serverless-build/compare/v0.1.3...v0.1.4) (2021-10-14)
