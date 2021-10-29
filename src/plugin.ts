@@ -23,7 +23,9 @@ export class ServerlessBuildPlugin implements ServerlessPlugin {
       serverless.pluginManager.addPlugin(ServerlessEsLogsPlugin);
     }
     serverless.pluginManager.addPlugin(ServerlessIamPerFunctionPlugin);
-    serverless.pluginManager.addPlugin(ServerlessPluginSplitStacks);
+    if (serverless.service.functions) {
+      serverless.pluginManager.addPlugin(ServerlessPluginSplitStacks);
+    }
 
     this.hooks = {
       'after:package:initialize': () => {

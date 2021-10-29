@@ -82,6 +82,9 @@ export class CustomConfig {
   }
 
   private buildStackMapOptions(service: Service): typeof DEFAULT_CONFIG.splitStacks {
+    if (!service.functions) {
+      return;
+    }
     this.stackMapFile = this.buildStackMapFile(service.functions as unknown as string[]);
     const options = service.custom;
     const pathjs = `${service.serverless.config.servicePath}/.serverless/stacks-map.js`;
