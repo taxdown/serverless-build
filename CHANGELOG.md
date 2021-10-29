@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.2](https://github.com/taxdown/serverless-build/compare/v0.2.1...v0.2.2) (2021-10-29)
+
+
+### Bug Fixes
+
+* also handle the case where service.functions is an empty object ([bfc4c44](https://github.com/taxdown/serverless-build/commits/bfc4c44b7dc4f57c11ae07919a44261215e8c453))
+
 ### [0.2.1](https://github.com/taxdown/serverless-build/compare/v0.2.0...v0.2.1) (2021-10-29)
 
 
