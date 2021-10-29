@@ -117,6 +117,44 @@ describe('Test CustomConfig', () => {
       },
     });
   });
+  test('When functions an empty object (default value), it should not have the split stacks output', async () => {
+    const service = {
+      custom: {
+        esLogs: {
+          endpoint: 'testEndpoint',
+          index: 'test',
+        },
+        splitStacks: {},
+      },
+      functions: {},
+      serverless: {
+        config: {
+          servicePath: 'test',
+        },
+      },
+    };
+    const customConfig = new CustomConfig(service);
+    expect(customConfig.get()).toEqual({
+      esbuild: {
+        concurrency: 10,
+        exclude: ['aws-sdk'],
+        format: 'cjs',
+        sourcemap: 'external',
+      },
+      esLogs: {
+        endpoint: 'testEndpoint',
+        index: 'test',
+        indexDateSeparator: '-',
+        useDefaultRole: true,
+        includeApiGWLogs: true,
+        mergeFunctionPolicies: true,
+      },
+      prune: {
+        automatic: true,
+        number: 10,
+      },
+    });
+  });
   test('When no functions, it should not have the split stacks output', async () => {
     const service = {
       custom: {
