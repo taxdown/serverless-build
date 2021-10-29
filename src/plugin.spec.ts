@@ -30,7 +30,7 @@ describe('Test ServerlessBuildPlugin', () => {
     const plugin = new ServerlessBuildPlugin(serverless);
     expect(addPlugin).toHaveBeenCalledTimes(4);
   });
-  test('When creating the serverless build plugin, with no functions, it should not add the stacksMap plugin', async () => {
+  test('When creating the serverless build plugin, with no functions, it should not add the stacksMap plugin, and hook should not call createStackMap', async () => {
     const addPlugin = jest.fn();
     const serverless = {
       config: {
@@ -57,6 +57,7 @@ describe('Test ServerlessBuildPlugin', () => {
       },
     } as unknown as Serverless;
     const plugin = new ServerlessBuildPlugin(serverless);
+    plugin.hooks['after:package:initialize']();
     expect(addPlugin).toHaveBeenCalledTimes(4);
   });
   test('When creating the serverless build plugin, it should add all plugins', async () => {

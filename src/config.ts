@@ -28,8 +28,10 @@ const DEFAULT_CONFIG = {
 };
 
 export class CustomConfig {
-  options: typeof DEFAULT_CONFIG;
-  stackMapFile: string;
+  protected isEsLogsEnabled = true;
+  protected isSplitStacksEnabled = true;
+  protected options: typeof DEFAULT_CONFIG;
+  protected stackMapFile: string;
 
   constructor(service: Service) {
     const options = service?.custom;
@@ -45,6 +47,7 @@ export class CustomConfig {
   private buildEsLogsOptions(service: Service): typeof DEFAULT_CONFIG.esLogs {
     const options = service?.custom;
     if (options?.esLogs === false) {
+      this.isEsLogsEnabled = false;
       service.serverless.cli.log('ServerlessEsLogsPlugin plugin disabled');
       return;
     }
@@ -83,6 +86,7 @@ export class CustomConfig {
 
   private buildStackMapOptions(service: Service): typeof DEFAULT_CONFIG.splitStacks {
     if (!Array.isArray(service.functions)) {
+      this.isSplitStacksEnabled = false;
       return;
     }
     this.stackMapFile = this.buildStackMapFile(service.functions as unknown as string[]);
@@ -101,7 +105,12 @@ export class CustomConfig {
   getStackMap(): string {
     return this.stackMapFile;
   }
-
+  isEsLogs(): boolean {
+    return this.isEsLogsEnabled;
+  }
+  isSplitStacks(): boolean {
+    return this.isSplitStacksEnabled;
+  }
   get(): typeof DEFAULT_CONFIG {
     return JSON.parse(JSON.stringify(this.options));
   }

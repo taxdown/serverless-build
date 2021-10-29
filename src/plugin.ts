@@ -19,17 +19,19 @@ export class ServerlessBuildPlugin implements ServerlessPlugin {
 
     serverless.pluginManager.addPlugin(EsbuildServerlessPlugin);
     serverless.pluginManager.addPlugin(ServerlessPluginPrune);
-    if (serverless.service.custom.esLogs) {
+    if (this.customConfig.isEsLogs()) {
       serverless.pluginManager.addPlugin(ServerlessEsLogsPlugin);
     }
     serverless.pluginManager.addPlugin(ServerlessIamPerFunctionPlugin);
-    if (serverless.service.functions) {
+    if (this.customConfig.isSplitStacks()) {
       serverless.pluginManager.addPlugin(ServerlessPluginSplitStacks);
     }
 
     this.hooks = {
       'after:package:initialize': () => {
-        this.customConfig.createStackMap();
+        if (this.customConfig.isSplitStacks()) {
+          this.customConfig.createStackMap();
+        }
       },
     };
   }
