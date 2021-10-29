@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.3](https://github.com/taxdown/serverless-build/compare/v0.2.2...v0.2.3) (2021-10-29)
+
+
+### Bug Fixes
+
+* if split stacks plugin is disabled, do not create stack map on hook ([19620e7](https://github.com/taxdown/serverless-build/commits/19620e7c48f0a652028c0c2ca5d92b17361b9ae9))
+
 ### [0.2.2](https://github.com/taxdown/serverless-build/compare/v0.2.1...v0.2.2) (2021-10-29)
 
 
