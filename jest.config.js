@@ -1,9 +1,7 @@
 module.exports = {
   collectCoverageFrom: ['src/**/*.ts'],
-  testMatch: [
-    '<rootDir>/**/*.spec.ts',
-  ],
+  testMatch: ['<rootDir>/**/*.spec.ts'],
   transform: {
-    '^.+\\.ts$': 'esbuild-jest',
+    '^.+\\.ts$': 'esbuild-runner/jest',
   },
 };

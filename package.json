@@ -28,6 +28,7 @@
     "@types/node": "^16.10.2",
     "esbuild": "^0.13.6",
     "esbuild-jest": "^0.5.0",
+    "esbuild-runner": "^2.2.1",
     "fs-extra": "^10.0.0",
     "jest": "^27.2.4",
     "nock": "^13.1.3",
