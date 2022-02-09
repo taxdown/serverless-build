@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/taxdown/serverless-build/compare/v0.2.3...v0.3.0) (2022-02-09)
+
+
+### Features
+
+* add esbuild-runner as dependency and maintain esbuild-jest for back compat ([c3933fd](https://github.com/taxdown/serverless-build/commits/c3933fd6eeb5fc08e7ae27bf4d6e582029dfb123))
+
 ### [0.2.3](https://github.com/taxdown/serverless-build/compare/v0.2.2...v0.2.3) (2021-10-29)
 
 
