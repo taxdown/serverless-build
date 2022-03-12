@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/taxdown/serverless-build/compare/v0.3.0...v0.4.0) (2022-03-12)
+
+
+### Features
+
+* allow disabling splitStacks ([1097790](https://github.com/taxdown/serverless-build/commits/109779078713eab77aad27b7305fd77fab03a41d))
+
 ## [0.3.0](https://github.com/taxdown/serverless-build/compare/v0.2.3...v0.3.0) (2022-02-09)
 
 
