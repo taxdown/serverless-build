@@ -85,7 +85,7 @@ export class CustomConfig {
   }
 
   private buildStackMapOptions(service: Service): typeof DEFAULT_CONFIG.splitStacks {
-    if (!Array.isArray(service.functions)) {
+    if (!Array.isArray(service.functions) || service.custom.splitStacks === false) {
       this.isSplitStacksEnabled = false;
       return;
     }
