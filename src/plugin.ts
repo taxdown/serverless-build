@@ -7,6 +7,7 @@ import ServerlessPluginPrune from 'serverless-prune-plugin';
 import * as Serverless from 'serverless';
 import * as ServerlessPlugin from 'serverless/classes/Plugin';
 import { CustomConfig } from './config';
+import { ServerlessDisableFunctionPlugin } from './plugin/disable';
 
 export class ServerlessBuildPlugin implements ServerlessPlugin {
   customConfig: CustomConfig;
@@ -19,6 +20,7 @@ export class ServerlessBuildPlugin implements ServerlessPlugin {
 
     serverless.pluginManager.addPlugin(EsbuildServerlessPlugin);
     serverless.pluginManager.addPlugin(ServerlessPluginPrune);
+    serverless.pluginManager.addPlugin(ServerlessDisableFunctionPlugin);
     if (this.customConfig.isEsLogs()) {
       serverless.pluginManager.addPlugin(ServerlessEsLogsPlugin);
     }

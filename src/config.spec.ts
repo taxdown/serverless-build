@@ -126,6 +126,7 @@ describe('Test CustomConfig', () => {
         },
         splitStacks: false,
       },
+      //functions in raw format, before initialization
       functions: [
         '${file(src/components/data/infrastructure/controller/functions.yml)}',
         '${file(src/components/record/infrastructure/controller/functions.yml)}',
