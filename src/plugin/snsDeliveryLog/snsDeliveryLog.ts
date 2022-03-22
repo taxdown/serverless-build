@@ -55,10 +55,11 @@ export class ServerlessSnsDeliveryLogPlugin implements ServerlessPlugin {
       }
     }
   }
-  protected getTopicArn(topicName: string): string {
+  protected async getTopicArn(topicName: string): Promise<string> {
     const region = this.serverless.service.provider.region;
-    const accountId = this.serverless.getProvider('aws').naming.getAccountId();
-    return `arn:aws:sns:${region}:${accountId}:${topicName}`;
+    const sts = new AWS.STS();
+    const { Account: account } = await sts.getCallerIdentity().promise();
+    return `arn:aws:sns:${region}:${account}:${topicName}`;
   }
   async addSnsIamRole(): Promise<void> {
     if (this.checkSnsTopics()) {
@@ -75,7 +76,7 @@ export class ServerlessSnsDeliveryLogPlugin implements ServerlessPlugin {
       const roleArn = await this.getIamRoleArn();
       for (const resource in this.serverless.service.resources.Resources) {
         if (this.serverless.service.resources.Resources[resource].Type === 'AWS::SNS::Topic') {
-          const topicArn = this.getTopicArn(
+          const topicArn = await this.getTopicArn(
             this.serverless.service.resources.Resources[resource].Properties.TopicName
           );
           // Set role for topic delivery messages
