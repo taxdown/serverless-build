@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.6.1](https://github.com/taxdown/serverless-build/compare/v0.6.0...v0.6.1) (2022-03-22)
+
+
+### Bug Fixes
+
+* do not use plugin var since it gets clean in separate steps (i.e. build and deploy) ([fe646db](https://github.com/taxdown/serverless-build/commits/fe646db7c9b48a9a009f3ecc51e819b81c03554c))
+
 ## [0.6.0](https://github.com/taxdown/serverless-build/compare/v0.5.0...v0.6.0) (2022-03-22)
 
 
