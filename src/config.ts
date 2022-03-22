@@ -18,6 +18,7 @@ const DEFAULT_CONFIG = {
     automatic: true,
     number: 10,
   },
+  snsDeliveryLog: true,
   splitStacks: {
     custom: undefined,
     perFunction: false,
@@ -40,6 +41,7 @@ export class CustomConfig {
       esbuild: { ...options?.esbuild, ...DEFAULT_CONFIG.esbuild },
       esLogs: this.buildEsLogsOptions(service),
       prune: { ...options?.prune, ...DEFAULT_CONFIG.prune },
+      snsDeliveryLog: options?.snsDeliveryLog ?? DEFAULT_CONFIG.snsDeliveryLog,
       splitStacks: this.buildStackMapOptions(service),
     };
   }
@@ -107,6 +109,9 @@ export class CustomConfig {
   }
   isEsLogs(): boolean {
     return this.isEsLogsEnabled;
+  }
+  isSnsDeliveryLog(): boolean {
+    return this.options.snsDeliveryLog;
   }
   isSplitStacks(): boolean {
     return this.isSplitStacksEnabled;

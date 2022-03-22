@@ -8,6 +8,7 @@ import * as Serverless from 'serverless';
 import * as ServerlessPlugin from 'serverless/classes/Plugin';
 import { CustomConfig } from './config';
 import { ServerlessDisableFunctionPlugin } from './plugin/disable';
+import { ServerlessSnsDeliveryLogPlugin } from './plugin/snsDeliveryLog/snsDeliveryLog';
 
 export class ServerlessBuildPlugin implements ServerlessPlugin {
   customConfig: CustomConfig;
@@ -27,6 +28,9 @@ export class ServerlessBuildPlugin implements ServerlessPlugin {
     serverless.pluginManager.addPlugin(ServerlessIamPerFunctionPlugin);
     if (this.customConfig.isSplitStacks()) {
       serverless.pluginManager.addPlugin(ServerlessPluginSplitStacks);
+    }
+    if (this.customConfig.isSnsDeliveryLog()) {
+      serverless.pluginManager.addPlugin(ServerlessSnsDeliveryLogPlugin);
     }
 
     this.hooks = {
