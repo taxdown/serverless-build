@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.6.3](https://github.com/taxdown/serverless-build/compare/v0.6.2...v0.6.3) (2022-03-22)
+
+
+### Bug Fixes
+
+* get account from aws sdk instead of serverless ([d72d32f](https://github.com/taxdown/serverless-build/commits/d72d32f3d3d2c1a27d4c723f241bd825bd01143d))
+
 ### [0.6.2](https://github.com/taxdown/serverless-build/compare/v0.6.1...v0.6.2) (2022-03-22)
 
 
