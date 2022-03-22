@@ -27,11 +27,9 @@ const SNS_ATTRIBUTE_SAMPLE_RATE = [
 
 export class ServerlessSnsDeliveryLogPlugin implements ServerlessPlugin {
   hooks: ServerlessPlugin.Hooks;
-  protected isSnsTopics = false;
   protected readonly roleName = 'ServerlessSnsDeliveryLogIamRole';
   constructor(protected serverless: Serverless) {
     this.hooks = {
-      'before:package:finalize': this.checkSnsTopics.bind(this),
       'aws:package:finalize:mergeCustomProviderResources': this.addSnsIamRole.bind(this),
       'after:deploy:deploy': this.setSnsDeliveryAttributes.bind(this),
     };
@@ -50,21 +48,21 @@ export class ServerlessSnsDeliveryLogPlugin implements ServerlessPlugin {
     const role = await iam.getRole({ RoleName: rolePhysicalId }).promise();
     return role.Role.Arn;
   }
-  async checkSnsTopics(): Promise<void> {
+  checkSnsTopics(): boolean {
     for (const resource in this.serverless.service.resources.Resources) {
       if (this.serverless.service.resources.Resources[resource].Type === 'AWS::SNS::Topic') {
-        this.isSnsTopics = true;
+        return true;
       }
     }
   }
   async addSnsIamRole(): Promise<void> {
-    if (this.isSnsTopics) {
+    if (this.checkSnsTopics()) {
       const template = this.serverless.service.provider.compiledCloudFormationTemplate;
       template.Resources[this.roleName] = iamRole;
     }
   }
   async setSnsDeliveryAttributes(): Promise<void> {
-    if (this.isSnsTopics) {
+    if (this.checkSnsTopics()) {
       const sns = new AWS.SNS({
         region: this.serverless.service.provider.region,
         apiVersion: '2010-03-31',
