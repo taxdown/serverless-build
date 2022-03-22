@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.6.0](https://github.com/taxdown/serverless-build/compare/v0.5.0...v0.6.0) (2022-03-22)
+
+
+### Features
+
+* add custom plugin for sns delivery metrics to cloudwatch after deploy when there are topics ([#14](https://github.com/taxdown/serverless-build/issues/14)) ([0180a52](https://github.com/taxdown/serverless-build/commits/0180a52641ed29410119ef74e966ca5df0fb825d))
+
 ## [0.5.0](https://github.com/taxdown/serverless-build/compare/v0.4.1...v0.5.0) (2022-03-21)
 
 
