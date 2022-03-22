@@ -41,6 +41,9 @@ describe('Test CustomConfig', () => {
       },
     };
     const customConfig = new CustomConfig(service);
+    expect(customConfig.isEsLogs()).toBe(true);
+    expect(customConfig.isSnsDeliveryLog()).toBe(true);
+    expect(customConfig.isSplitStacks()).toBe(true);
     expect(customConfig.get()).toEqual({
       esbuild: {
         concurrency: 10,
@@ -60,6 +63,55 @@ describe('Test CustomConfig', () => {
         automatic: true,
         number: 10,
       },
+      snsDeliveryLog: true,
+      splitStacks: {
+        custom: 'test/.serverless/stacks-map.js',
+        perFunction: false,
+        perType: false,
+        perGroupFunction: false,
+        stackConcurrency: 5,
+      },
+    });
+  });
+  test('When snsDeliveryLog is set to false, it should return that key as false and the function as well', async () => {
+    const service = {
+      custom: {
+        esLogs: {
+          endpoint: 'testEndpoint',
+          index: 'test',
+        },
+        snsDeliveryLog: false,
+        splitStacks: {},
+      },
+      functions: [],
+      serverless: {
+        config: {
+          servicePath: 'test',
+        },
+      },
+    };
+    const customConfig = new CustomConfig(service);
+    expect(customConfig.isSnsDeliveryLog()).toBe(false);
+    expect(customConfig.get()).toEqual({
+      esbuild: {
+        concurrency: 10,
+        exclude: ['aws-sdk'],
+        format: 'cjs',
+        sourcemap: 'external',
+      },
+      esLogs: {
+        endpoint: 'testEndpoint',
+        index: 'test',
+        indexDateSeparator: '-',
+        useDefaultRole: true,
+        includeApiGWLogs: true,
+        mergeFunctionPolicies: true,
+      },
+      prune: {
+        automatic: true,
+        number: 10,
+      },
+      snsDeliveryLog: false,
       splitStacks: {
         custom: 'test/.serverless/stacks-map.js',
         perFunction: false,
@@ -108,6 +160,7 @@ describe('Test CustomConfig', () => {
         automatic: true,
         number: 10,
       },
+      snsDeliveryLog: true,
       splitStacks: {
         custom: 'test/.serverless/stacks-map.js',
         perFunction: false,
@@ -138,6 +191,7 @@ describe('Test CustomConfig', () => {
       },
     };
     const customConfig = new CustomConfig(service);
+    expect(customConfig.isSplitStacks()).toBe(false);
     expect(customConfig.get()).toEqual({
       esbuild: {
         concurrency: 10,
@@ -157,6 +211,7 @@ describe('Test CustomConfig', () => {
         automatic: true,
         number: 10,
       },
+      snsDeliveryLog: true,
     });
   });
   test('When functions an empty object (default value), it should not have the split stacks output', async () => {
@@ -176,6 +231,7 @@ describe('Test CustomConfig', () => {
       },
     };
     const customConfig = new CustomConfig(service);
+    expect(customConfig.isSplitStacks()).toBe(false);
     expect(customConfig.get()).toEqual({
       esbuild: {
         concurrency: 10,
@@ -195,6 +251,7 @@ describe('Test CustomConfig', () => {
         automatic: true,
         number: 10,
       },
+      snsDeliveryLog: true,
     });
   });
   test('When no functions, it should not have the split stacks output', async () => {
@@ -213,6 +270,7 @@ describe('Test CustomConfig', () => {
       },
     };
     const customConfig = new CustomConfig(service);
+    expect(customConfig.isSplitStacks()).toBe(false);
     expect(customConfig.get()).toEqual({
       esbuild: {
         concurrency: 10,
@@ -232,6 +290,7 @@ describe('Test CustomConfig', () => {
         automatic: true,
         number: 10,
       },
+      snsDeliveryLog: true,
     });
   });
 });
