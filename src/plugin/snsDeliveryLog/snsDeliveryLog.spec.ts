@@ -23,20 +23,20 @@ describe('Test ServerlessSnsDeliveryLogPlugin', () => {
       },
     } as unknown as Serverless;
     Object.freeze(serverless);
-    test.only('When package is befor finalize, ensure isSnsTopics is false', async () => {
+    test('When package is befor finalize, ensure isSnsTopics is false', async () => {
       const plugin = new ServerlessSnsDeliveryLogPlugin(serverless);
       await plugin.hooks['before:package:finalize']();
       //@ts-expect-error
       expect(plugin.isSnsTopics).toBe(false);
     });
-    test.only('When package is finalized, ensure there are no custom resource', async () => {
+    test('When package is finalized, ensure there are no custom resource', async () => {
       const plugin = new ServerlessSnsDeliveryLogPlugin(serverless);
       await plugin.hooks['before:package:finalize']();
       await plugin.hooks['aws:package:finalize:mergeCustomProviderResources']();
       expect(serverless.service.provider).toBeUndefined();
       // await plugin.hooks['after:deploy:deploy']();
     });
-    test.only('When we have finished deploy, do nothing', async () => {
+    test('When we have finished deploy, do nothing', async () => {
       const plugin = new ServerlessSnsDeliveryLogPlugin(serverless);
       await plugin.hooks['before:package:finalize']();
       await plugin.hooks['aws:package:finalize:mergeCustomProviderResources']();
@@ -70,12 +70,12 @@ describe('Test ServerlessSnsDeliveryLogPlugin', () => {
       },
     } as unknown as Serverless;
     const plugin = new ServerlessSnsDeliveryLogPlugin(serverless);
-    test.only('When finizing package, ensure isSnsTopics is true', async () => {
+    test('When finizing package, ensure isSnsTopics is true', async () => {
       await plugin.hooks['before:package:finalize']();
       //@ts-expect-error
       expect(plugin.isSnsTopics).toBe(true);
     });
-    test.only('When finizing package, ensure LambdaRole is present', async () => {
+    test('When finizing package, ensure LambdaRole is present', async () => {
       await plugin.hooks['before:package:finalize']();
       await plugin.hooks['aws:package:finalize:mergeCustomProviderResources']();
       expect(serverless.service.provider).toEqual({
