@@ -48,12 +48,17 @@ export class ServerlessSnsDeliveryLogPlugin implements ServerlessPlugin {
     const role = await iam.getRole({ RoleName: rolePhysicalId }).promise();
     return role.Role.Arn;
   }
-  checkSnsTopics(): boolean {
+  protected checkSnsTopics(): boolean {
     for (const resource in this.serverless.service.resources.Resources) {
       if (this.serverless.service.resources.Resources[resource].Type === 'AWS::SNS::Topic') {
         return true;
       }
     }
+  }
+  protected getTopicArn(topicName: string): string {
+    const region = this.serverless.service.provider.region;
+    const accountId = this.serverless.getProvider('aws').naming.getAccountId();
+    return `arn:aws:sns:${region}:${accountId}:${topicName}`;
   }
   async addSnsIamRole(): Promise<void> {
     if (this.checkSnsTopics()) {
@@ -70,15 +75,14 @@ export class ServerlessSnsDeliveryLogPlugin implements ServerlessPlugin {
       const roleArn = await this.getIamRoleArn();
       for (const resource in this.serverless.service.resources.Resources) {
         if (this.serverless.service.resources.Resources[resource].Type === 'AWS::SNS::Topic') {
-          const topicName =
-            this.serverless.service.resources.Resources[resource].Properties.TopicName;
-          // Should return the topic, since it already exists, instead of creating
-          const topic = await sns.createTopic({ Name: topicName }).promise();
+          const topicArn = this.getTopicArn(
+            this.serverless.service.resources.Resources[resource].Properties.TopicName
+          );
           // Set role for topic delivery messages
           for (const attributeRole of SNS_ATTRIBUTE_ROLE) {
             const params = {
               AttributeName: attributeRole,
-              TopicArn: topic.TopicArn,
+              TopicArn: topicArn,
               AttributeValue: roleArn,
             };
             await sns.setTopicAttributes(params).promise();
@@ -87,7 +91,7 @@ export class ServerlessSnsDeliveryLogPlugin implements ServerlessPlugin {
           for (const attributeRole of SNS_ATTRIBUTE_SAMPLE_RATE) {
             const params = {
               AttributeName: attributeRole,
-              TopicArn: topic.TopicArn,
+              TopicArn: topicArn,
               AttributeValue: '0',
             };
             await sns.setTopicAttributes(params).promise();
